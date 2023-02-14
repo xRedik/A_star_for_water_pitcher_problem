@@ -13,8 +13,11 @@ def read_file(filename):
 
 #function for calculating the herustic value
 def heuristic(current_state,target_quantity):
+    #getting the infinite capacity pitcher
     inifinite_capacity_pitcher = current_state[-1]
     
+    #comparing the infinite capacity pitcher with target 
+    #if it is less than target we return differente between them, else we just return 0
     if inifinite_capacity_pitcher <= target_quantity:
         return target_quantity - inifinite_capacity_pitcher
     
