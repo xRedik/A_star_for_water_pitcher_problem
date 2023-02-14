@@ -4,11 +4,15 @@ from water_pitcher import heuristic, a_star_algorithm
 #Testing the heuristic function
 class TestHeuristic(unittest.TestCase):
 
-    #Test if the heuristic never overestimates the actual cost
+    #Test if the heuristic is admissible or not
     def test_admissible(self):
-        for i in range(1, 10):
-            self.assertLessEqual(heuristic((i, 0), 10), 10 - i)
-    
+        current_state = [2,3,5,6]
+        target_quantity = 6
+        self.assertLessEqual(heuristic(current_state, target_quantity), target_quantity - current_state[-1])
+
+        current_state = [3,4,7]
+        target_quantity = 3
+        self.assertEqual(heuristic(current_state, target_quantity), 0)
     
     #Test if the heuristic is consistent
     def test_consistent(self):

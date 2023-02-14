@@ -11,9 +11,14 @@ def read_file(filename):
         target = int(f.readline())
     return capacities.astype(np.int32), target
 
-#function for calculating the herustic by subtracting the total states with the target quantity
+#function for calculating the herustic value
 def heuristic(current_state,target_quantity):
-    return np.abs(np.sum(current_state) - target_quantity)
+    inifinite_capacity_pitcher = current_state[-1]
+    
+    if inifinite_capacity_pitcher <= target_quantity:
+        return target_quantity - inifinite_capacity_pitcher
+    
+    return 0
 
 
 #function for solving the shortest path using A star algorithm
