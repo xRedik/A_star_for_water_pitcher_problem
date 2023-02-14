@@ -47,9 +47,7 @@ def a_star_algorithm(capacities,target_quantity):
     while fridge_pq:
 
         #popping the tuple from the priority queue
-        h , step, current_state =  heapq.heappop(fridge_pq)
-        
-        #print(h, step, current_state)
+        _ , step, current_state =  heapq.heappop(fridge_pq)
         
         #checking if the infinite capacity pitcher has a water or not
         if current_state[-1] == target_quantity:
