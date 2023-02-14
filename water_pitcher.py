@@ -15,13 +15,13 @@ def read_file(filename):
 def heuristic(current_state,target_quantity):
     #getting the infinite capacity pitcher
     inifinite_capacity_pitcher = current_state[-1]
-    
+
     #comparing the infinite capacity pitcher with target 
-    #if it is less than target we return differente between them, else we just return 0
+    #if it is less than target we return differente between them, else we just return maximum value
     if inifinite_capacity_pitcher <= target_quantity:
         return target_quantity - inifinite_capacity_pitcher
     
-    return 0
+    return sys.maxsize
 
 
 #function for solving the shortest path using A star algorithm
@@ -47,8 +47,10 @@ def a_star_algorithm(capacities,target_quantity):
     while fridge_pq:
 
         #popping the tuple from the priority queue
-        _ , step, current_state =  heapq.heappop(fridge_pq)
-
+        h , step, current_state =  heapq.heappop(fridge_pq)
+        
+        #print(h, step, current_state)
+        
         #checking if the infinite capacity pitcher has a water or not
         if current_state[-1] == target_quantity:
            return step
@@ -78,10 +80,10 @@ def a_star_algorithm(capacities,target_quantity):
                     next_state[i]+=pour
                     next_state[j]-=pour
                 
-                #in other case, if it is not the infinity capacity pitcher, we just fill or unfill it with water.
+                #in other case, if it is not the infinity capacity pitcher, we just fill it with water.
                 else:
                     if i!=capacities.shape[0]-1:
-                        next_state[i] = capacities[i] - next_state[i]
+                        next_state[i] = capacities[i]
 
                 #if next state is not in visited_state then we can push the new state to the queue
                 if tuple(next_state) not in visited_states:

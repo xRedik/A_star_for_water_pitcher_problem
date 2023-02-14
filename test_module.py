@@ -1,5 +1,6 @@
 import unittest
 from water_pitcher import heuristic, a_star_algorithm
+import sys
 
 #Testing the heuristic function
 class TestHeuristic(unittest.TestCase):
@@ -12,7 +13,7 @@ class TestHeuristic(unittest.TestCase):
 
         current_state = [3,4,7]
         target_quantity = 3
-        self.assertEqual(heuristic(current_state, target_quantity), 0)
+        self.assertEqual(heuristic(current_state, target_quantity), sys.maxsize)
     
     #Test if the heuristic is consistent
     def test_consistent(self):
